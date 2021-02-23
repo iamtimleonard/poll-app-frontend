@@ -63,7 +63,7 @@ const App = () => {
           <li className="nav-link pointer">
             <Link to="/">See All</Link>
           </li>
-          <li className="nav-link pointer">
+          <li onClick={() => setSubmitted(false)} className="nav-link pointer">
             <Link to="/create">Create Survey</Link>
           </li>
         </ul>

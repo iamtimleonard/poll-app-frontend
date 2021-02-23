@@ -24,19 +24,22 @@ const App = () => {
     return data;
   };
 
-  const handleVote = (choice, pollId) => {
-    let pollFromState = polls.find((poll) => poll._id === pollId);
-    let remainingPolls = polls.filter((poll) => poll._id !== pollId);
-
-    pollFromState.options.forEach((option) => {
-      option.id === choice && option.votes++;
-    });
-
+  const handleVote = async (choice, pollId) => {
     axios
-      .post(`${API_URL}/polls/vote/${pollId}`, pollFromState)
-      .then((res) => console.log(res.data));
-
-    setPolls([pollFromState, ...remainingPolls]);
+      .get(`${API_URL}/polls/${pollId}`)
+      .then(({ data }) => {
+        data.options.forEach((option) => {
+          option.id === choice && option.votes++;
+        });
+        return data;
+      })
+      .then((res) => {
+        axios.post(`${API_URL}/polls/vote/${pollId}`, res).then(() => {
+          axios.get(`${API_URL}/polls`).then(({ data }) => {
+            setPolls(data);
+          });
+        });
+      });
   };
 
   const handleCreate = (pollData) => {

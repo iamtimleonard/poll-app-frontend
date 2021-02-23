@@ -39,7 +39,7 @@ const Options = ({ options, id, handleVote }) => {
               </label>
             </div>
           ))}
-          <button disabled={!choice && true} class="vote-button pointer">
+          <button disabled={!choice && true} className="vote-button pointer">
             Vote
           </button>
         </form>

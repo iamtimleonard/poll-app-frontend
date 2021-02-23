@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import PollsList from "./components/PollsList";
 import NewPoll from "./components/NewPoll";
 import axios from "axios";
@@ -10,6 +15,7 @@ let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const App = () => {
   const [polls, setPolls] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
   useEffect(() => {
     const getPolls = async () => {
       const pollsFromServer = await fetchPolls();
@@ -47,6 +53,7 @@ const App = () => {
       pollData._id = res.data;
       setPolls([...polls, pollData]);
     });
+    setSubmitted(true);
   };
 
   return (
@@ -68,6 +75,7 @@ const App = () => {
         </Route>
         <Route path="/create">
           <NewPoll handleCreate={handleCreate} />
+          {submitted && <Redirect to="/" />}
         </Route>
       </div>
     </Router>

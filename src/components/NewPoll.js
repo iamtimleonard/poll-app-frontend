@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaAngry } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 
 const NewPoll = ({ handleCreate }) => {
   const [question, setQuestion] = useState("");
@@ -56,7 +56,11 @@ const NewPoll = ({ handleCreate }) => {
           <p className="option-input" key={option.id}>
             {option.text}
             <span className="icon pointer">
-              <FaAngry color="red" onClick={() => deleteOption(option.id)} />
+              <FaTrashAlt
+                size={16}
+                color="red"
+                onClick={() => deleteOption(option.id)}
+              />
             </span>
           </p>
         ))}

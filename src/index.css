@@ -108,6 +108,20 @@ nav {
   font-size: 1.8rem;
 }
 
+.option-input:hover .icon svg {
+  height: auto;
+  padding: 0 1rem;
+}
+
+.icon svg {
+  height: 0;
+  padding: 0 0.5rem;
+  width: 3.5rem;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
 .form-control input {
   width: 100%;
   font-size: 1.8rem;
@@ -124,10 +138,6 @@ nav {
   padding: 1rem;
   font-size: 1.8rem;
   border: none;
-}
-
-.icon {
-  margin-left: 0.5rem;
 }
 
 .pointer {

@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-const Options = ({ options, id, handleVote }) => {
+const Options = ({ options, id, handleVote, voted, updateVoted }) => {
   const [choice, setChoice] = useState("");
-  const [voted, setVoted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setVoted(true);
+    updateVoted();
     handleVote(parseInt(choice), id);
   };
 

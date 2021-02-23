@@ -49,19 +49,17 @@ nav {
   list-style: none;
 }
 
-.nav-link {
+.navbar a {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.5rem 1rem;
-}
-
-.nav-link:hover {
-  background-color: #dedede;
-}
-
-.nav-link a {
-  text-decoration: none;
   color: black;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #dedede;
 }
 
 .container {
@@ -78,6 +76,14 @@ nav {
 .question {
   margin: 1rem 0;
   text-decoration: underline;
+}
+
+.question:hover {
+  color: rgb(255, 129, 71);
+}
+
+.active {
+  color: tomato;
 }
 
 .vote-button {

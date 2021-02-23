@@ -10,7 +10,10 @@ const PollCard = ({ question, options, id, handleVote }) => {
 
   return (
     <div className="poll-card">
-      <h3 className="question pointer" onClick={() => setActive(!active)}>
+      <h3
+        className={`${active && "active"} question pointer`}
+        onClick={() => setActive(!active)}
+      >
         {question}
       </h3>
       {active && (

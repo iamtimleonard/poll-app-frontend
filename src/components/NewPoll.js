@@ -50,12 +50,14 @@ const NewPoll = ({ handleCreate }) => {
             name=""
             id=""
             placeholder="Poll question"
+            aria-label="poll question"
+            aria-required="true"
           />
         </div>
         {options.map((option, index) => (
           <p className="option-input" key={option.id}>
             {option.text}
-            <span className="icon pointer">
+            <span className="icon pointer" aria-label="delete response option">
               <FaTrashAlt
                 size={16}
                 color="red"
@@ -70,6 +72,7 @@ const NewPoll = ({ handleCreate }) => {
             onChange={(e) => setNewOption(e.target.value)}
             type="text"
             placeholder="Response option"
+            aria-label="type new response option"
           />
         </div>
         <div className="buttons">
@@ -83,7 +86,7 @@ const NewPoll = ({ handleCreate }) => {
             }
             type="submit"
           >
-            Submit
+            Submit New Poll
           </button>
         </div>
       </form>

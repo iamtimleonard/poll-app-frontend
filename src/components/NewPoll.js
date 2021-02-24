@@ -18,10 +18,6 @@ const NewPoll = ({ handleCreate }) => {
 
   const createPoll = (e) => {
     e.preventDefault();
-    if (!question) {
-      alert("Question is required!");
-      return;
-    }
     let optionsList = options.map((option) => {
       option.votes = 0;
       return option;

@@ -26,8 +26,10 @@ h4 {
   font-size: 1.6rem;
 }
 
-p {
+p,
+li {
   font-size: 1.4rem;
+  list-style-type: none;
 }
 
 a {
@@ -38,18 +40,13 @@ nav {
   width: 100%;
   padding: 3rem;
   background-color: beige;
-}
-
-.navbar {
   display: flex;
   justify-content: space-around;
-  width: 90%;
-  max-width: 40rem;
   margin: 0 auto;
   list-style: none;
 }
 
-.navbar a {
+nav a {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.5rem 1rem;
@@ -58,7 +55,7 @@ nav {
   transition: all 0.3s;
 }
 
-.navbar a:hover {
+nav a:hover {
   background-color: #dedede;
 }
 

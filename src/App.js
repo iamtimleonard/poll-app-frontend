@@ -59,10 +59,8 @@ const App = () => {
   return (
     <Router>
       <nav>
-        <div className="navbar">
-          <Link to="/">See All</Link>
-          <Link to="/create">Create Survey</Link>
-        </div>
+        <Link to="/">See All</Link>
+        <Link to="/create">Create Survey</Link>
       </nav>
       <h1>PollBuddy</h1>
       <main>

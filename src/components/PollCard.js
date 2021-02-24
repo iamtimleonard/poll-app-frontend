@@ -9,7 +9,7 @@ const PollCard = ({ question, options, id, handleVote }) => {
   };
 
   return (
-    <section className="poll-card">
+    <article aria-live="polite" aria-atomic="true" className="poll-card">
       <h3
         className={`${active && "active"} question pointer`}
         onClick={() => setActive(!active)}
@@ -25,7 +25,7 @@ const PollCard = ({ question, options, id, handleVote }) => {
           id={id}
         />
       )}
-    </section>
+    </article>
   );
 };
 

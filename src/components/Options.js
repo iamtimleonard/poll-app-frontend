@@ -12,13 +12,13 @@ const Options = ({ options, id, handleVote, voted, updateVoted }) => {
   return (
     <>
       {voted ? (
-        <>
+        <article>
           {options.map((option) => (
             <p className="vote-result" key={option.id}>{`${option.text}: ${
               option.votes
             } ${option.votes === 1 ? "vote" : "votes"}`}</p>
           ))}
-        </>
+        </article>
       ) : (
         <form onSubmit={handleSubmit}>
           {options.map((option) => (

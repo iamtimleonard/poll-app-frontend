@@ -39,7 +39,7 @@ const NewPoll = ({ handleCreate }) => {
     setOptions(options.filter((option) => option.id !== id));
   };
   return (
-    <div className="new-poll">
+    <section className="new-poll">
       <h2 className="heading">Create a New Poll</h2>
       <form>
         <div className="form-control">
@@ -87,7 +87,7 @@ const NewPoll = ({ handleCreate }) => {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 

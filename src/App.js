@@ -65,15 +65,17 @@ const App = () => {
         </div>
       </nav>
       <h1>PollBuddy</h1>
-      <div className="container">
-        <Route path="/" exact>
-          <PollsList polls={polls} handleVote={handleVote} />
-        </Route>
-        <Route path="/create">
-          <NewPoll handleCreate={handleCreate} />
-          {submitted && <Redirect to="/" />}
-        </Route>
-      </div>
+      <main>
+        <div className="container">
+          <Route path="/" exact>
+            <PollsList polls={polls} handleVote={handleVote} />
+          </Route>
+          <Route path="/create">
+            <NewPoll handleCreate={handleCreate} />
+            {submitted && <Redirect to="/" />}
+          </Route>
+        </div>
+      </main>
     </Router>
   );
 };

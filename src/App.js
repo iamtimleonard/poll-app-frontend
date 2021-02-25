@@ -9,7 +9,6 @@ import PollsList from "./components/PollsList";
 import NewPoll from "./components/NewPoll";
 import axios from "axios";
 import dotenv from "dotenv";
-import Login from "./components/Login";
 dotenv.config();
 
 let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -62,7 +61,6 @@ const App = () => {
       <nav>
         <Link to="/">See All</Link>
         <Link to="/create">Create Survey</Link>
-        <Link to="/login">Login or Create An Account</Link>
       </nav>
       <h1>PollBuddy</h1>
       <main>
@@ -73,9 +71,6 @@ const App = () => {
           <Route path="/create">
             <NewPoll handleCreate={handleCreate} />
             {submitted && <Redirect to="/" />}
-          </Route>
-          <Route path="/login">
-            <Login></Login>
           </Route>
         </div>
       </main>

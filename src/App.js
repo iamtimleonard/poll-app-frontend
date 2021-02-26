@@ -55,6 +55,15 @@ const App = () => {
     });
   };
 
+  const findUser = (userName) => {
+    axios.get(`${API_URL}/users`).then(({ data }) => {
+      let [foundUser] = data.filter((user) => user.name === userName);
+      foundUser
+        ? alert(`Welcome back, ${foundUser.name}`)
+        : alert("Please try again");
+    });
+  };
+
   const handleCreate = (pollData) => {
     axios.post(`${API_URL}/polls/add`, pollData).then((res) => {
       pollData._id = res.data;
@@ -81,7 +90,7 @@ const App = () => {
             {submitted && <Redirect to="/" />}
           </Route>
           <Route path="/login">
-            <Login createUser={createUser} />
+            <Login findUser={findUser} createUser={createUser} />
           </Route>
         </div>
       </main>

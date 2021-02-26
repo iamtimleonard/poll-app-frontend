@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Login = ({ createUser }) => {
+const Login = ({ createUser, findUser }) => {
   const [isNewUser, setIsNewUser] = useState(false);
 
   const [nameInput, setNameInput] = useState("");
@@ -14,6 +14,8 @@ const Login = ({ createUser }) => {
         return;
       }
       createUser({ name: nameInput });
+    } else {
+      findUser(nameInput);
     }
   };
   return (

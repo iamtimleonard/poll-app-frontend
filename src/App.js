@@ -49,6 +49,12 @@ const App = () => {
       });
   };
 
+  const createUser = (userData) => {
+    axios.post(`${API_URL}/users/add`, userData).then((res) => {
+      console.log(res);
+    });
+  };
+
   const handleCreate = (pollData) => {
     axios.post(`${API_URL}/polls/add`, pollData).then((res) => {
       pollData._id = res.data;
@@ -75,7 +81,7 @@ const App = () => {
             {submitted && <Redirect to="/" />}
           </Route>
           <Route path="/login">
-            <Login></Login>
+            <Login createUser={createUser} />
           </Route>
         </div>
       </main>

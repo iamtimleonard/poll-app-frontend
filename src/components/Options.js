@@ -1,4 +1,5 @@
 import { useState } from "react";
+import VoteGraph from "./VoteGraph";
 
 const Options = ({ options, id, handleVote, voted, updateVoted }) => {
   const [choice, setChoice] = useState("");
@@ -9,14 +10,32 @@ const Options = ({ options, id, handleVote, voted, updateVoted }) => {
     handleVote(parseInt(choice), id);
   };
 
+  const colors = [
+    "cadetblue",
+    "coral",
+    "darkslateblue",
+    "forestgreen",
+    "peru",
+    "teal",
+    "dodgerblue",
+    "firebrick",
+    "darkviolet",
+    "darksalmon",
+    "fuchsia",
+    "darkkhaki",
+  ];
+
   return (
     <>
       {voted ? (
         <ul>
-          {options.map((option) => (
-            <li className="vote-result" key={option.id}>{`${option.text}: ${
-              option.votes
-            } ${option.votes === 1 ? "vote" : "votes"}`}</li>
+          {options.map((option, index) => (
+            <li className="vote-result" key={option.id}>
+              <VoteGraph color={colors[index]} num={option.votes} />
+              {`${option.text}: ${option.votes} ${
+                option.votes === 1 ? "vote" : "votes"
+              }`}
+            </li>
           ))}
         </ul>
       ) : (

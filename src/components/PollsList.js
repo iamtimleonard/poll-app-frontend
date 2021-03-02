@@ -1,6 +1,7 @@
 import PollCard from "./PollCard";
 
-const PollsList = ({ polls, handleVote }) => {
+const PollsList = ({ user, polls, handleVote }) => {
+  let { voted, created } = user;
   return (
     <>
       <h2 className="heading">Choose a poll below:</h2>
@@ -12,6 +13,8 @@ const PollsList = ({ polls, handleVote }) => {
       >
         {polls.map((poll) => (
           <PollCard
+            userVoted={voted}
+            userCreated={created}
             options={poll.options}
             key={poll._id}
             question={poll.question}

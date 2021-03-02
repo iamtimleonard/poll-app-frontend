@@ -10,6 +10,7 @@ import NewPoll from "./components/NewPoll";
 import axios from "axios";
 import dotenv from "dotenv";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 dotenv.config();
 
 let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -17,6 +18,7 @@ let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const App = () => {
   const [polls, setPolls] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [user, setUser] = useState("");
   useEffect(() => {
     const getPolls = async () => {
       const pollsFromServer = await fetchPolls();
@@ -58,9 +60,7 @@ const App = () => {
   const findUser = (userName) => {
     axios.get(`${API_URL}/users`).then(({ data }) => {
       let [foundUser] = data.filter((user) => user.name === userName);
-      foundUser
-        ? alert(`Welcome back, ${foundUser.name}`)
-        : alert("Please try again");
+      foundUser ? setUser(foundUser) : alert("Please try again");
     });
   };
 
@@ -72,25 +72,42 @@ const App = () => {
     setSubmitted(true);
   };
 
+  const logOut = () => {
+    setUser("");
+  };
+
   return (
     <Router>
       <nav>
         <Link to="/">See All</Link>
-        <Link to="/create">Create Survey</Link>
-        <Link to="/login">Login or Create An Account</Link>
+        {user && (
+          <Link onClick={() => setSubmitted(false)} to="/create">
+            Create Survey
+          </Link>
+        )}
+        <Link to="/login">
+          {!user ? "Login or New User" : "Logout"} {user && <Redirect to="/" />}
+        </Link>
       </nav>
       <h1>PollBuddy</h1>
+      <p>{user ? `Welcome, ${user.name}` : "Please log in!"}</p>
       <main>
         <div className="container">
           <Route path="/" exact>
-            <PollsList polls={polls} handleVote={handleVote} />
+            {user && (
+              <PollsList user={user} polls={polls} handleVote={handleVote} />
+            )}
           </Route>
           <Route path="/create">
-            <NewPoll handleCreate={handleCreate} />
+            <NewPoll user={user} handleCreate={handleCreate} />
             {submitted && <Redirect to="/" />}
           </Route>
           <Route path="/login">
-            <Login findUser={findUser} createUser={createUser} />
+            {!user ? (
+              <Login findUser={findUser} createUser={createUser} />
+            ) : (
+              <Logout logOut={logOut} />
+            )}
           </Route>
         </div>
       </main>

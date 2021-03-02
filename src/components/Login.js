@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Login = ({ createUser, findUser }) => {
+const Login = ({ user, logOut, createUser, findUser }) => {
   const [isNewUser, setIsNewUser] = useState(false);
 
   const [nameInput, setNameInput] = useState("");
@@ -18,6 +18,7 @@ const Login = ({ createUser, findUser }) => {
       findUser(nameInput);
     }
   };
+
   return (
     <>
       <button onClick={() => setIsNewUser(!isNewUser)}>

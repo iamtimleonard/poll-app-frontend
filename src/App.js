@@ -49,6 +49,17 @@ const App = () => {
           });
         });
       });
+
+    axios
+      .get(`${API_URL}/users/${user._id}`)
+      .then(({ data }) => {
+        data.voted.push(pollId);
+        return data;
+      })
+      .then((data) => {
+        setUser(data);
+        axios.post(`${API_URL}/users/vote/${data._id}`, data);
+      });
   };
 
   const createUser = (userData) => {

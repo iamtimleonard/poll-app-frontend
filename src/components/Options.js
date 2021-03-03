@@ -1,12 +1,11 @@
 import { useState } from "react";
 import VoteGraph from "./VoteGraph";
 
-const Options = ({ options, id, handleVote, voted, updateVoted }) => {
+const Options = ({ options, id, handleVote, voted }) => {
   const [choice, setChoice] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateVoted();
     handleVote(parseInt(choice), id);
   };
 

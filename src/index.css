@@ -1,3 +1,5 @@
+/* universal styles */
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
@@ -36,6 +38,8 @@ a {
   font-size: 1.8rem;
 }
 
+/* navbar */
+
 nav {
   width: 100%;
   padding: 3rem;
@@ -59,6 +63,8 @@ nav a:hover {
   background-color: #dedede;
 }
 
+/* home screen */
+
 .container {
   width: 75%;
   max-width: 80rem;
@@ -69,6 +75,8 @@ nav a:hover {
 .heading {
   margin: 1rem 0;
 }
+
+/* PollCard */
 
 .question {
   margin: 1rem 0;
@@ -81,6 +89,10 @@ nav a:hover {
 
 .active {
   color: tomato;
+}
+
+.vote-graph {
+  margin-right: 1rem;
 }
 
 .vote-button {
@@ -96,6 +108,8 @@ nav a:hover {
   font-size: 1.8rem;
   margin-left: 1rem;
 }
+
+/* NewPoll and inputs */
 
 .form-control {
   margin: 1rem 0;

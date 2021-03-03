@@ -1,12 +1,9 @@
 import { useState } from "react";
 import Options from "./Options";
 
-const PollCard = ({ question, options, id, handleVote }) => {
+const PollCard = ({ userVoted, question, options, id, handleVote }) => {
   const [active, setActive] = useState(false);
-  const [voted, setVoted] = useState(false);
-  const updateVoted = () => {
-    setVoted(true);
-  };
+  let voted = userVoted.includes(id);
 
   return (
     <article aria-live="polite" aria-atomic="true" className="poll-card">
@@ -18,7 +15,6 @@ const PollCard = ({ question, options, id, handleVote }) => {
       </h3>
       {active && (
         <Options
-          updateVoted={updateVoted}
           voted={voted}
           handleVote={handleVote}
           options={options}

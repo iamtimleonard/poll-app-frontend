@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useUserContext } from "../../context/user";
 
-const Login = ({ user, logOut, createUser, findUser }) => {
+const Login = () => {
+  const { createUser, findUser } = useUserContext();
   const [isNewUser, setIsNewUser] = useState(false);
 
   const [nameInput, setNameInput] = useState("");

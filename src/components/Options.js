@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useUserContext } from "../context/user";
 import VoteGraph from "./VoteGraph";
 
 const Options = ({ options, id, handleVote, voted }) => {
+  const { handleVoteUser } = useUserContext();
   const [choice, setChoice] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleVote(parseInt(choice), id);
+    handleVoteUser(id);
   };
 
   const colors = [

@@ -9,8 +9,8 @@ export const userContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
-  const createUser = (userData) => {
-    axios.post(`${API_URL}/users/add`, { userData }).then((res) => {
+  const createUser = (name) => {
+    axios.post(`${API_URL}/users/add`, { name }).then((res) => {
       setUser(res.data);
     });
   };
@@ -27,8 +27,23 @@ export const UserContextProvider = ({ children }) => {
   const logOut = () => {
     setUser("");
   };
+
+  const handleVoteUser = (pollId) => {
+    axios
+      .get(`${API_URL}/users/${user._id}`)
+      .then(({ data }) => {
+        data.voted.push(pollId);
+        return data;
+      })
+      .then((data) => {
+        setUser(data);
+        axios.post(`${API_URL}/users/vote/${data._id}`, data);
+      });
+  };
   return (
-    <userContext.Provider value={{ user, createUser, findUser, logOut }}>
+    <userContext.Provider
+      value={{ user, createUser, findUser, logOut, handleVoteUser }}
+    >
       {children}
     </userContext.Provider>
   );

@@ -15,7 +15,7 @@ const Login = () => {
         alert("Make sure your names match");
         return;
       }
-      createUser({ name: nameInput });
+      createUser(nameInput);
     } else {
       findUser(nameInput);
     }

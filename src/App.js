@@ -37,8 +37,13 @@ const App = () => {
   const handleVote = async (choice, pollId) => {
     axios
       .post(`${API_URL}/polls/vote/`, { choice, pollId, user })
-      .then((res) => {
-        console.log(res);
+      .then(({ data }) => {
+        setPolls((prevValue) => {
+          let polls = [...prevValue];
+          let targetIndex = polls.findIndex((poll) => poll._id === pollId);
+          polls[targetIndex] = data;
+          return polls;
+        });
       });
   };
 

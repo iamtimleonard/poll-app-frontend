@@ -30,6 +30,7 @@ const Login = ({ user, logOut, createUser, findUser }) => {
             value={nameInput}
             onChange={(e) => setNameInput(e.target.value)}
             type="text"
+            name="name"
             placeholder="Username"
           />
         </div>
@@ -39,6 +40,7 @@ const Login = ({ user, logOut, createUser, findUser }) => {
               value={nameConfirm}
               onChange={(e) => setNameConfirm(e.target.value)}
               type="text"
+              name="nameConfirm"
               placeholder="Confirm Username"
             />
           </div>

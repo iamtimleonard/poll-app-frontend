@@ -68,10 +68,12 @@ const App = () => {
     });
   };
 
-  const findUser = (userName) => {
-    axios.get(`${API_URL}/users`).then(({ data }) => {
-      let [foundUser] = data.filter((user) => user.name === userName);
-      foundUser ? setUser(foundUser) : alert("Please try again");
+  const findUser = (name) => {
+    axios.post(`${API_URL}/users/login`, { name }).then(({ data }) => {
+      if (!data) {
+        return alert("User not found, please try again");
+      }
+      setUser(data);
     });
   };
 

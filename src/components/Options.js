@@ -33,8 +33,8 @@ const Options = ({ options, id, handleVote, voted }) => {
         <ul>
           {options.map((option, index) => (
             <li className="vote-result" key={option.id}>
-              <VoteGraph color={colors[index]} num={option.votes} />
-              {`${option.text}: ${option.votes} ${
+              <VoteGraph color={colors[index]} num={option.votes.length} />
+              {`${option.text}: ${option.votes.length} ${
                 option.votes === 1 ? "vote" : "votes"
               }`}
             </li>

@@ -19,7 +19,7 @@ const NewPoll = ({ handleCreate }) => {
   const createPoll = (e) => {
     e.preventDefault();
     let optionsList = options.map((option) => {
-      option.votes = 0;
+      option.votes = [];
       return option;
     });
     const pollData = {

@@ -64,7 +64,7 @@ const App = () => {
 
   const createUser = (userData) => {
     axios.post(`${API_URL}/users/add`, userData).then((res) => {
-      console.log(res);
+      setUser(res.data);
     });
   };
 

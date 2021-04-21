@@ -1,6 +1,8 @@
+import { useUserContext } from "../context/user";
 import PollCard from "./PollCard";
 
-const PollsList = ({ user, polls, handleVote }) => {
+const PollsList = ({ polls, handleVote }) => {
+  const { user } = useUserContext();
   let { voted, created } = user;
   return (
     <>

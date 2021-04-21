@@ -1,3 +1,5 @@
+import axios from "axios";
+import dotenv from "dotenv";
 import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -5,20 +7,19 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import { useUserContext } from "./context/user";
 import PollsList from "./components/PollsList";
 import NewPoll from "./components/NewPoll";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import axios from "axios";
-import dotenv from "dotenv";
+import Login from "./components/auth/Login";
+import Logout from "./components/auth/Logout";
 dotenv.config();
 
 let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const App = () => {
+  const { user } = useUserContext();
   const [polls, setPolls] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const [user, setUser] = useState("");
   useEffect(() => {
     const getPolls = async () => {
       const pollsFromServer = await fetchPolls();
@@ -49,30 +50,6 @@ const App = () => {
           });
         });
       });
-
-    axios
-      .get(`${API_URL}/users/${user._id}`)
-      .then(({ data }) => {
-        data.voted.push(pollId);
-        return data;
-      })
-      .then((data) => {
-        setUser(data);
-        axios.post(`${API_URL}/users/vote/${data._id}`, data);
-      });
-  };
-
-  const createUser = (userData) => {
-    axios.post(`${API_URL}/users/add`, userData).then((res) => {
-      setUser(res.data);
-    });
-  };
-
-  const findUser = (userName) => {
-    axios.get(`${API_URL}/users`).then(({ data }) => {
-      let [foundUser] = data.filter((user) => user.name === userName);
-      foundUser ? setUser(foundUser) : alert("Please try again");
-    });
   };
 
   const handleCreate = (pollData) => {
@@ -81,10 +58,6 @@ const App = () => {
       setPolls([...polls, pollData]);
     });
     setSubmitted(true);
-  };
-
-  const logOut = () => {
-    setUser("");
   };
 
   return (
@@ -105,21 +78,13 @@ const App = () => {
       <main>
         <div className="container">
           <Route path="/" exact>
-            {user && (
-              <PollsList user={user} polls={polls} handleVote={handleVote} />
-            )}
+            {user && <PollsList polls={polls} handleVote={handleVote} />}
           </Route>
           <Route path="/create">
             <NewPoll user={user} handleCreate={handleCreate} />
             {submitted && <Redirect to="/" />}
           </Route>
-          <Route path="/login">
-            {!user ? (
-              <Login findUser={findUser} createUser={createUser} />
-            ) : (
-              <Logout logOut={logOut} />
-            )}
-          </Route>
+          <Route path="/login">{!user ? <Login /> : <Logout />}</Route>
         </div>
       </main>
     </Router>

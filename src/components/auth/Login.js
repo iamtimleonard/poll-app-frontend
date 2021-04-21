@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useUserContext } from "../../context/user";
 
-const Login = ({ user, logOut, createUser, findUser }) => {
+const Login = () => {
+  const { createUser, findUser } = useUserContext();
   const [isNewUser, setIsNewUser] = useState(false);
 
   const [nameInput, setNameInput] = useState("");
@@ -13,7 +15,7 @@ const Login = ({ user, logOut, createUser, findUser }) => {
         alert("Make sure your names match");
         return;
       }
-      createUser({ name: nameInput });
+      createUser(nameInput);
     } else {
       findUser(nameInput);
     }
@@ -30,6 +32,7 @@ const Login = ({ user, logOut, createUser, findUser }) => {
             value={nameInput}
             onChange={(e) => setNameInput(e.target.value)}
             type="text"
+            name="name"
             placeholder="Username"
           />
         </div>
@@ -39,6 +42,7 @@ const Login = ({ user, logOut, createUser, findUser }) => {
               value={nameConfirm}
               onChange={(e) => setNameConfirm(e.target.value)}
               type="text"
+              name="nameConfirm"
               placeholder="Confirm Username"
             />
           </div>

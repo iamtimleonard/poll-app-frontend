@@ -16,6 +16,10 @@ const Login = () => {
         alert("Make sure your names match");
         return;
       }
+      if (password !== passwordConfirm) {
+        alert("Passwords must match");
+        return;
+      }
       createUser({ name, password });
     } else {
       findUser({ name, password });

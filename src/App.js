@@ -36,18 +36,13 @@ const App = () => {
 
   const handleVote = async (choice, pollId) => {
     axios
-      .get(`${API_URL}/polls/${pollId}`)
+      .post(`${API_URL}/polls/vote/`, { choice, pollId, user })
       .then(({ data }) => {
-        data.options.forEach((option) => {
-          option.id === choice && option.votes++;
-        });
-        return data;
-      })
-      .then((res) => {
-        axios.post(`${API_URL}/polls/vote/${pollId}`, res).then(() => {
-          axios.get(`${API_URL}/polls`).then(({ data }) => {
-            setPolls(data);
-          });
+        setPolls((prevValue) => {
+          let polls = [...prevValue];
+          let targetIndex = polls.findIndex((poll) => poll._id === pollId);
+          polls[targetIndex] = data;
+          return polls;
         });
       });
   };

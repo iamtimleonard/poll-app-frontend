@@ -26,11 +26,13 @@ const Login = () => {
     }
   };
 
+  const handleNewUser = (e) => {
+    e.preventDefault();
+    setIsNewUser(!isNewUser);
+  };
+
   return (
     <>
-      <button onClick={() => setIsNewUser(!isNewUser)}>
-        {isNewUser ? "Returning user?" : "New User?"}
-      </button>
       <form>
         <div className="form-control">
           <input
@@ -73,8 +75,14 @@ const Login = () => {
           </div>
         )}
         <div className="form-control">
-          <button onClick={handleSubmit}>
+          <button className="login__btn login--submit" onClick={handleSubmit}>
             {isNewUser ? "Create Account" : "Log in"}
+          </button>
+          <button
+            className="login__btn login--new-user"
+            onClick={handleNewUser}
+          >
+            {isNewUser ? "Returning user?" : "New User?"}
           </button>
         </div>
       </form>

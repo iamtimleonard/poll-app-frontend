@@ -69,7 +69,9 @@ const App = () => {
         </Link>
       </nav>
       <h1>PollBuddy</h1>
-      <p>{user ? `Welcome, ${user.name}` : "Please log in!"}</p>
+      <p className="welcome">
+        {user ? `Welcome, ${user.name}` : "Please log in!"}
+      </p>
       <main>
         <div className="container">
           <Route path="/" exact>

@@ -5,7 +5,9 @@ const Logout = () => {
   const { logOut } = useUserContext();
   return (
     <>
-      <button onClick={logOut}>Logout</button>
+      <button className="login__btn" onClick={logOut}>
+        Logout
+      </button>
     </>
   );
 };

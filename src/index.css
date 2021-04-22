@@ -70,10 +70,19 @@ nav a:hover {
   max-width: 80rem;
   margin: 5rem auto;
   padding: 2rem;
+  text-align: center;
 }
 
 .heading {
   margin: 1rem 0;
+}
+
+.poll-list {
+  text-align: left;
+}
+
+.welcome {
+  text-align: center;
 }
 
 /* PollCard */
@@ -152,4 +161,24 @@ nav a:hover {
 
 .pointer {
   cursor: pointer;
+}
+
+/* login */
+
+.login__btn {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+}
+
+.login__btn:hover {
+  background: #dedede;
+}
+
+.login--submit {
+  border: 1px solid black;
 }

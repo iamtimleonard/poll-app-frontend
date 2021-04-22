@@ -5,19 +5,20 @@ const Login = () => {
   const { createUser, findUser } = useUserContext();
   const [isNewUser, setIsNewUser] = useState(false);
 
-  const [nameInput, setNameInput] = useState("");
+  const [name, setName] = useState("");
   const [nameConfirm, setNameConfirm] = useState("");
-
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isNewUser) {
-      if (nameInput !== nameConfirm) {
+      if (name !== nameConfirm) {
         alert("Make sure your names match");
         return;
       }
-      createUser(nameInput);
+      createUser({ name, password });
     } else {
-      findUser(nameInput);
+      findUser({ name, password });
     }
   };
 
@@ -29,8 +30,8 @@ const Login = () => {
       <form>
         <div className="form-control">
           <input
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             type="text"
             name="name"
             placeholder="Username"
@@ -44,6 +45,26 @@ const Login = () => {
               type="text"
               name="nameConfirm"
               placeholder="Confirm Username"
+            />
+          </div>
+        )}
+        <div className="form-control">
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        {isNewUser && (
+          <div className="form-control">
+            <input
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+              type="password"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
             />
           </div>
         )}

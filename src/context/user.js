@@ -9,19 +9,19 @@ export const userContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
-  const createUser = (name) => {
-    axios.post(`${API_URL}/users/add`, { name }).then((res) => {
+  const createUser = ({ name, password }) => {
+    axios.post(`${API_URL}/users/add`, { name, password }).then((res) => {
       setUser(res.data);
     });
   };
 
-  const findUser = (name) => {
-    axios.post(`${API_URL}/users/login`, { name }).then(({ data }) => {
-      if (!data) {
-        return alert("User not found, please try again");
-      }
-      setUser(data);
-    });
+  const findUser = ({ name, password }) => {
+    axios
+      .post(`${API_URL}/users/login`, { name, password })
+      .then(({ data }) => {
+        setUser(data);
+      })
+      .catch((err) => console.log(err.response.data));
   };
 
   const logOut = () => {

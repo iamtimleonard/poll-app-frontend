@@ -25,7 +25,15 @@ export const UserContextProvider = ({ children }) => {
   };
 
   const logOut = () => {
-    setUser("");
+    axios
+      .get(`${API_URL}/users/logout`)
+      .then((res) => {
+        console.log(res.data);
+        setUser("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleVoteUser = (pollId) => {

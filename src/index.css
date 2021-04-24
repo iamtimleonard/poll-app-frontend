@@ -87,6 +87,12 @@ nav a:hover {
 
 /* PollCard */
 
+.poll-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .question {
   margin: 1rem 0;
   text-decoration: underline;

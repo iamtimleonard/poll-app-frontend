@@ -87,6 +87,12 @@ nav a:hover {
 
 /* PollCard */
 
+.poll-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .question {
   margin: 1rem 0;
   text-decoration: underline;
@@ -102,6 +108,16 @@ nav a:hover {
 
 .vote-graph {
   margin-right: 1rem;
+}
+
+.poll-user-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+  outline: none;
 }
 
 .vote-button {

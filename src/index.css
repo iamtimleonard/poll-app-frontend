@@ -110,6 +110,16 @@ nav a:hover {
   margin-right: 1rem;
 }
 
+.poll-user-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+  outline: none;
+}
+
 .vote-button {
   width: 8rem;
   padding: 0.5rem;

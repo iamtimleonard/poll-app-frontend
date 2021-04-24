@@ -24,7 +24,12 @@ const PollCard = ({
         </h3>
         <p>
           Created by:{" "}
-          <button onClick={() => getall(createdBy.id)}>{createdBy.name}</button>
+          <button
+            className="poll-user-btn"
+            onClick={() => getall(createdBy.id)}
+          >
+            {createdBy.name}
+          </button>
         </p>
       </header>
       {active && (

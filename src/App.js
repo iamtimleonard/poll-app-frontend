@@ -34,6 +34,11 @@ const App = () => {
     return data;
   };
 
+  const getAllPolls = async () => {
+    const allPolls = await fetchPolls();
+    setPolls(allPolls);
+  };
+
   const handleVote = async (choice, pollId) => {
     axios
       .post(`${API_URL}/polls/vote/`, { choice, pollId, user })
@@ -55,10 +60,18 @@ const App = () => {
     setSubmitted(true);
   };
 
+  const getallByUser = (userId) => {
+    axios
+      .get(`${API_URL}/polls/getall/${userId}`)
+      .then((res) => setPolls(res.data));
+  };
+
   return (
     <Router>
       <nav>
-        <Link to="/">See All</Link>
+        <Link onClick={getAllPolls} to="/">
+          See All
+        </Link>
         {user && (
           <Link onClick={() => setSubmitted(false)} to="/create">
             Create Survey
@@ -75,7 +88,13 @@ const App = () => {
       <main>
         <div className="container">
           <Route path="/" exact>
-            {user && <PollsList polls={polls} handleVote={handleVote} />}
+            {user && (
+              <PollsList
+                getall={getallByUser}
+                polls={polls}
+                handleVote={handleVote}
+              />
+            )}
           </Route>
           <Route path="/create">
             <NewPoll user={user} handleCreate={handleCreate} />

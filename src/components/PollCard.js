@@ -8,6 +8,7 @@ const PollCard = ({
   id,
   createdBy,
   handleVote,
+  getall,
 }) => {
   const [active, setActive] = useState(false);
   let voted = userVoted.includes(id);
@@ -21,7 +22,10 @@ const PollCard = ({
         >
           {question}
         </h3>
-        <p>Created by: {createdBy.name}</p>
+        <p>
+          Created by:{" "}
+          <button onClick={() => getall(createdBy.id)}>{createdBy.name}</button>
+        </p>
       </header>
       {active && (
         <Options

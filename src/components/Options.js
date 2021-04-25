@@ -3,8 +3,8 @@ import { useUserContext } from "../context/user";
 import { usePollsContext } from "../context/polls";
 import VoteGraph from "./VoteGraph";
 
-const Options = ({ options, id, voted }) => {
-  const { handleVoteUser, user } = useUserContext();
+const Options = ({ options, id, voted, setVoted }) => {
+  const { handleVoteUser, user, removeVote } = useUserContext();
   const { handleVote, handleChangeVote } = usePollsContext();
   const [choice, setChoice] = useState("");
 
@@ -12,10 +12,13 @@ const Options = ({ options, id, voted }) => {
     e.preventDefault();
     handleVote(parseInt(choice), id);
     handleVoteUser(id);
+    setVoted(true);
   };
 
   const changeVote = () => {
     handleChangeVote(id);
+    removeVote(id);
+    setVoted(false);
   };
 
   const colors = [

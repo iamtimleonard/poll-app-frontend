@@ -63,13 +63,12 @@ export const PollsContextProvider = ({ children }) => {
       .post(`${API_URL}/polls/vote/change`, { pollId: id, userId: user._id })
       .then((res) =>
         setPolls((prevPolls) => {
-          const upadtedPolls = prevPolls.map((poll) => {
-            if (poll.id === id) {
+          return prevPolls.map((poll) => {
+            if (id === poll._id) {
               poll = { ...res.data };
             }
             return poll;
           });
-          return upadtedPolls;
         })
       );
   };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePollsContext } from "../context/polls";
 import { useUserContext } from "../context/user";
 import Options from "./Options";

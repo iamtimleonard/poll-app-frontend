@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { usePollsContext } from "../context/polls";
+import { useUserContext } from "../context/user";
 import Options from "./Options";
 
-const PollCard = ({ userVoted, question, options, id, createdBy }) => {
+const PollCard = ({ question, options, id, createdBy }) => {
+  const { user } = useUserContext();
   const [active, setActive] = useState(false);
-  let voted = userVoted.includes(id);
+  const [voted, setVoted] = useState(user.voted.includes(id));
   const { getAllByUser } = usePollsContext();
   return (
     <article aria-live="polite" aria-atomic="true" className="poll-card">
@@ -25,7 +27,9 @@ const PollCard = ({ userVoted, question, options, id, createdBy }) => {
           </button>
         </p>
       </header>
-      {active && <Options voted={voted} options={options} id={id} />}
+      {active && (
+        <Options voted={voted} setVoted={setVoted} options={options} id={id} />
+      )}
     </article>
   );
 };

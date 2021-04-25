@@ -48,9 +48,16 @@ export const UserContextProvider = ({ children }) => {
         axios.post(`${API_URL}/users/vote/${data._id}`, data);
       });
   };
+
+  const removeVote = (pollId) => {
+    setUser((prevValue) => {
+      prevValue.voted.splice(prevValue.voted.indexOf(pollId), 1);
+      return prevValue;
+    });
+  };
   return (
     <userContext.Provider
-      value={{ user, createUser, findUser, logOut, handleVoteUser }}
+      value={{ user, createUser, findUser, logOut, handleVoteUser, removeVote }}
     >
       {children}
     </userContext.Provider>

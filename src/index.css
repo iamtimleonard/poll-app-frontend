@@ -87,12 +87,6 @@ nav a:hover {
 
 /* PollCard */
 
-.poll-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
 .question {
   margin: 1rem 0;
   text-decoration: underline;
@@ -197,4 +191,12 @@ nav a:hover {
 
 .login--submit {
   border: 1px solid black;
+}
+
+@media (min-width: 700px) {
+  .poll-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 }

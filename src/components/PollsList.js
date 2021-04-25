@@ -24,6 +24,7 @@ const PollsList = ({ getall }) => {
             question={poll.question}
             id={poll._id}
             createdBy={poll.createdBy}
+            isOwner={poll.createdBy.id === user._id}
           />
         ))}
       </section>

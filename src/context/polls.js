@@ -58,6 +58,21 @@ export const PollsContextProvider = ({ children }) => {
       .then((res) => setPolls(res.data));
   };
 
+  const handleChangeVote = (id) => {
+    axios
+      .post(`${API_URL}/polls/vote/change`, { pollId: id, userId: user._id })
+      .then((res) =>
+        setPolls((prevPolls) => {
+          const upadtedPolls = prevPolls.map((poll) => {
+            if (poll.id === id) {
+              poll = { ...res.data };
+            }
+            return poll;
+          });
+          return upadtedPolls;
+        })
+      );
+  };
   return (
     <pollsContext.Provider
       value={{
@@ -69,6 +84,7 @@ export const PollsContextProvider = ({ children }) => {
         submitted,
         setSubmitted,
         getAllByUser,
+        handleChangeVote,
       }}
     >
       {children}

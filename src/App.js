@@ -1,6 +1,3 @@
-import axios from "axios";
-import dotenv from "dotenv";
-import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,19 +10,10 @@ import PollsList from "./components/PollsList";
 import NewPoll from "./components/NewPoll";
 import Login from "./components/auth/Login";
 import Logout from "./components/auth/Logout";
-dotenv.config();
-
-let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const App = () => {
   const { user } = useUserContext();
-  const { submitted, setSubmitted, getAllPolls, setPolls } = usePollsContext();
-
-  const getallByUser = (userId) => {
-    axios
-      .get(`${API_URL}/polls/getall/${userId}`)
-      .then((res) => setPolls(res.data));
-  };
+  const { submitted, setSubmitted, getAllPolls } = usePollsContext();
 
   return (
     <Router>

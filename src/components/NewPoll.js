@@ -3,7 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useUserContext } from "../context/user";
 import { usePollsContext } from "../context/polls";
 
-const NewPoll = ({}) => {
+const NewPoll = () => {
   const { user } = useUserContext();
   const { handleCreate } = usePollsContext();
   const [question, setQuestion] = useState("");

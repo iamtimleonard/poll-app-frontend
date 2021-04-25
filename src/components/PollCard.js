@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { usePollsContext } from "../context/polls";
 import Options from "./Options";
 
 const PollCard = ({
@@ -8,11 +9,10 @@ const PollCard = ({
   id,
   createdBy,
   handleVote,
-  getall,
 }) => {
   const [active, setActive] = useState(false);
   let voted = userVoted.includes(id);
-
+  const { getAllByUser } = usePollsContext();
   return (
     <article aria-live="polite" aria-atomic="true" className="poll-card">
       <header className="poll-header">
@@ -26,7 +26,7 @@ const PollCard = ({
           Created by:{" "}
           <button
             className="poll-user-btn"
-            onClick={() => getall(createdBy.id)}
+            onClick={() => getAllByUser(createdBy.id)}
           >
             {createdBy.name}
           </button>

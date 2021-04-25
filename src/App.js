@@ -8,6 +8,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useUserContext } from "./context/user";
+import { usePollsContext } from "./context/polls";
 import PollsList from "./components/PollsList";
 import NewPoll from "./components/NewPoll";
 import Login from "./components/auth/Login";
@@ -18,47 +19,7 @@ let API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const App = () => {
   const { user } = useUserContext();
-  const [polls, setPolls] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
-  useEffect(() => {
-    const getPolls = async () => {
-      const pollsFromServer = await fetchPolls();
-      setPolls(pollsFromServer);
-    };
-    getPolls();
-  }, []);
-
-  const fetchPolls = async () => {
-    const res = await fetch(`${API_URL}/polls`);
-    const data = await res.json();
-    return data;
-  };
-
-  const getAllPolls = async () => {
-    const allPolls = await fetchPolls();
-    setPolls(allPolls);
-  };
-
-  const handleVote = async (choice, pollId) => {
-    axios
-      .post(`${API_URL}/polls/vote/`, { choice, pollId, user })
-      .then(({ data }) => {
-        setPolls((prevValue) => {
-          let polls = [...prevValue];
-          let targetIndex = polls.findIndex((poll) => poll._id === pollId);
-          polls[targetIndex] = data;
-          return polls;
-        });
-      });
-  };
-
-  const handleCreate = (pollData) => {
-    axios.post(`${API_URL}/polls/add`, pollData).then((res) => {
-      pollData._id = res.data;
-      setPolls([...polls, pollData]);
-    });
-    setSubmitted(true);
-  };
+  const { submitted, setSubmitted, getAllPolls, setPolls } = usePollsContext();
 
   const getallByUser = (userId) => {
     axios
@@ -88,16 +49,10 @@ const App = () => {
       <main>
         <div className="container">
           <Route path="/" exact>
-            {user && (
-              <PollsList
-                getall={getallByUser}
-                polls={polls}
-                handleVote={handleVote}
-              />
-            )}
+            {user && <PollsList />}
           </Route>
           <Route path="/create">
-            <NewPoll user={user} handleCreate={handleCreate} />
+            <NewPoll />
             {submitted && <Redirect to="/" />}
           </Route>
           <Route path="/login">{!user ? <Login /> : <Logout />}</Route>

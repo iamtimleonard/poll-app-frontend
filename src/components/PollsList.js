@@ -1,7 +1,9 @@
 import { useUserContext } from "../context/user";
+import { usePollsContext } from "../context/polls";
 import PollCard from "./PollCard";
 
-const PollsList = ({ polls, handleVote, getall }) => {
+const PollsList = ({ getall }) => {
+  const { polls } = usePollsContext();
   const { user } = useUserContext();
   let { voted, created } = user;
   return (
@@ -22,8 +24,6 @@ const PollsList = ({ polls, handleVote, getall }) => {
             question={poll.question}
             id={poll._id}
             createdBy={poll.createdBy}
-            handleVote={handleVote}
-            getall={getall}
           />
         ))}
       </section>

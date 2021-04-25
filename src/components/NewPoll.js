@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useUserContext } from "../context/user";
+import { usePollsContext } from "../context/polls";
 
-const NewPoll = ({ handleCreate }) => {
+const NewPoll = () => {
   const { user } = useUserContext();
+  const { handleCreate } = usePollsContext();
   const [question, setQuestion] = useState("");
   const [newOption, setNewOption] = useState("");
   const [options, setOptions] = useState([]);

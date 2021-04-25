@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useUserContext } from "../context/user";
+import { usePollsContext } from "../context/polls";
 import VoteGraph from "./VoteGraph";
 
-const Options = ({ options, id, handleVote, voted }) => {
+const Options = ({ options, id, voted }) => {
   const { handleVoteUser } = useUserContext();
+  const { handleVote } = usePollsContext();
   const [choice, setChoice] = useState("");
 
   const handleSubmit = (e) => {

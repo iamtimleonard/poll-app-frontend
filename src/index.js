@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserContextProvider } from "./context/user";
+import { PollsContextProvider } from "./context/polls";
 
 ReactDOM.render(
   <React.StrictMode>
     <UserContextProvider>
-      <App />
+      <PollsContextProvider>
+        <App />
+      </PollsContextProvider>
     </UserContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

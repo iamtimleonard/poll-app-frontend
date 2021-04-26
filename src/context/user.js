@@ -55,9 +55,28 @@ export const UserContextProvider = ({ children }) => {
       return prevValue;
     });
   };
+  const deleteUser = async () => {
+    try {
+      let result = await axios.post(`${API_URL}/users/delete/`, {
+        userId: user._id,
+      });
+      console.log(result);
+      setUser("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <userContext.Provider
-      value={{ user, createUser, findUser, logOut, handleVoteUser, removeVote }}
+      value={{
+        user,
+        createUser,
+        findUser,
+        logOut,
+        handleVoteUser,
+        removeVote,
+        deleteUser,
+      }}
     >
       {children}
     </userContext.Provider>

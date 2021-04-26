@@ -7,7 +7,8 @@ const PollCard = ({ question, options, id, createdBy }) => {
   const { user } = useUserContext();
   const [active, setActive] = useState(false);
   const [voted, setVoted] = useState(user.voted.includes(id));
-  const { getAllByUser } = usePollsContext();
+  const { getAllByUser, deletePoll } = usePollsContext();
+
   return (
     <article aria-live="polite" aria-atomic="true" className="poll-card">
       <header className="poll-header">
@@ -29,6 +30,9 @@ const PollCard = ({ question, options, id, createdBy }) => {
       </header>
       {active && (
         <Options voted={voted} setVoted={setVoted} options={options} id={id} />
+      )}
+      {createdBy.id === user._id && (
+        <button onClick={() => deletePoll(id)}>Delete Poll</button>
       )}
     </article>
   );

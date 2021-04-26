@@ -7,6 +7,7 @@ import {
 import { useUserContext } from "./context/user";
 import { usePollsContext } from "./context/polls";
 import PollsList from "./components/PollsList";
+import PollsListInactive from "./components/PollsListInactve";
 import NewPoll from "./components/NewPoll";
 import Login from "./components/auth/Login";
 import User from "./components/user/User";
@@ -41,7 +42,7 @@ const App = () => {
       <main>
         <div className="container">
           <Route path="/" exact>
-            {user && <PollsList />}
+            {user ? <PollsList /> : <PollsListInactive />}
           </Route>
           <Route path="/create">
             <NewPoll />

@@ -28,7 +28,7 @@ const App = () => {
           </Link>
         )}
         {user ? (
-          <Link to="/profile">My Profile</Link>
+          <Link to="/profile">My Profile{!user && <Redirect to="/" />}</Link>
         ) : (
           <Link to="/login">
             Login or New User {user && <Redirect to="/" />}

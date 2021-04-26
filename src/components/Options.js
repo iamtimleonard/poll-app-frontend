@@ -50,7 +50,7 @@ const Options = ({ options, id, voted, setVoted }) => {
               >
                 <VoteGraph color={colors[index]} num={option.votes.length} />
                 {`${option.text}: ${option.votes.length} ${
-                  option.votes === 1 ? "vote" : "votes"
+                  option.votes.length === 1 ? "vote" : "votes"
                 }`}
               </li>
             ))}

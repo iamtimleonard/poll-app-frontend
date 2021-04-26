@@ -73,13 +73,13 @@ export const PollsContextProvider = ({ children }) => {
       );
   };
 
-  const deletePoll = (id) => {
-    axios
-      .post(`${API_URL}/polls/delete/${id}`)
-      .then(({ data }) => {
-        setPolls(polls.filter((poll) => poll.id !== data._id));
-      })
-      .catch((err) => alert(`Error: ${err}`));
+  const deletePoll = async (id) => {
+    try {
+      const { data } = await axios.post(`${API_URL}/polls/delete/${id}`);
+      setPolls(polls.filter((poll) => poll.id !== data._id));
+    } catch (err) {
+      alert(`Error: ${err}`);
+    }
   };
   return (
     <pollsContext.Provider

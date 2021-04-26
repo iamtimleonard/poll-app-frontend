@@ -9,7 +9,7 @@ import { usePollsContext } from "./context/polls";
 import PollsList from "./components/PollsList";
 import NewPoll from "./components/NewPoll";
 import Login from "./components/auth/Login";
-import Logout from "./components/auth/Logout";
+import User from "./components/user/User";
 
 const App = () => {
   const { user } = useUserContext();
@@ -26,9 +26,13 @@ const App = () => {
             Create Survey
           </Link>
         )}
-        <Link to="/login">
-          {!user ? "Login or New User" : "Logout"} {user && <Redirect to="/" />}
-        </Link>
+        {user ? (
+          <Link to="/profile">My Profile</Link>
+        ) : (
+          <Link to="/login">
+            Login or New User {user && <Redirect to="/" />}
+          </Link>
+        )}
       </nav>
       <h1>PollBuddy</h1>
       <p className="welcome">
@@ -43,7 +47,14 @@ const App = () => {
             <NewPoll />
             {submitted && <Redirect to="/" />}
           </Route>
-          <Route path="/login">{!user ? <Login /> : <Logout />}</Route>
+          <Route path="/login">
+            <Login />
+            {user && <Redirect to="/" />}
+          </Route>
+          <Route path="/profile">
+            <User></User>
+            {!user && <Redirect to="/" />}
+          </Route>
         </div>
       </main>
     </Router>

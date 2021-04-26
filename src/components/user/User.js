@@ -9,7 +9,9 @@ const User = () => {
       <header className="profile__header">
         <h1>{`${user.name}'s`} Profile</h1>
         <p>Member Since: {joinDate}</p>
-        <button onClick={deleteUser}>Delete Account</button>
+        <button className="login__btn" onClick={deleteUser}>
+          Delete Account
+        </button>
         <Logout></Logout>
       </header>
       <div className="profile__polls"></div>

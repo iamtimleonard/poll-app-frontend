@@ -11,15 +11,36 @@ export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const createUser = ({ name, password }) => {
     axios.post(`${API_URL}/users/add`, { name, password }).then((res) => {
+      console.log(res.data);
       setUser(res.data);
     });
+  };
+
+  const checkLoggedIn = async () => {
+    console.dir(localStorage["pollSession"]);
+    const response = await fetch(`${API_URL}/users`, {
+      method: "POST",
+      body: {
+        sessionID: localStorage["pollSession"],
+      },
+      mode: "cors",
+      credentials: "include",
+    });
+    const data = await response.json();
+    console.log(data);
+    if (data.user) {
+      return setUser(user);
+    }
+    return;
   };
 
   const findUser = ({ name, password }) => {
     axios
       .post(`${API_URL}/users/login`, { name, password })
       .then(({ data }) => {
+        console.log(data);
         setUser(data);
+        localStorage.setItem("pollSession", data.sessionID);
       })
       .catch((err) => console.log(err.response.data));
   };
@@ -40,6 +61,7 @@ export const UserContextProvider = ({ children }) => {
     axios
       .get(`${API_URL}/users/${user._id}`)
       .then(({ data }) => {
+        console.log(data);
         data.voted.push(pollId);
         return data;
       })
@@ -76,6 +98,7 @@ export const UserContextProvider = ({ children }) => {
         handleVoteUser,
         removeVote,
         deleteUser,
+        checkLoggedIn,
       }}
     >
       {children}

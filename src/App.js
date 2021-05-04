@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,9 +14,11 @@ import Login from "./components/auth/Login";
 import User from "./components/user/User";
 
 const App = () => {
-  const { user } = useUserContext();
+  const { user, checkLoggedIn } = useUserContext();
   const { submitted, setSubmitted, getAllPolls } = usePollsContext();
-
+  useEffect(() => {
+    checkLoggedIn();
+  }, [checkLoggedIn]);
   return (
     <Router>
       <nav>

@@ -69,17 +69,21 @@ const Login = () => {
               value={passwordConfirm}
               onChange={(e) => setPasswordConfirm(e.target.value)}
               type="password"
-              name="passwordConfirm"
               placeholder="Confirm Password"
             />
           </div>
         )}
         <div className="form-control">
-          <button className="login__btn login--submit" onClick={handleSubmit}>
+          <button
+            className="login__btn login--submit"
+            aria-label="submit form"
+            onClick={handleSubmit}
+          >
             {isNewUser ? "Create Account" : "Log in"}
           </button>
           <button
             className="login__btn login--new-user"
+            aria-label="toggle register or log in"
             onClick={handleNewUser}
           >
             {isNewUser ? "Returning user?" : "New User?"}

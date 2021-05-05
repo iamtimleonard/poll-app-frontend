@@ -1,8 +1,9 @@
 import { render, screen } from "../../test-utils";
 import "@testing-library/jest-dom/extend-expect";
 import Login from "./Login";
+import { fireEvent } from "@testing-library/react";
 
-test("login", () => {
+test("<Login />", async () => {
   render(<Login />);
   expect(screen.getByRole("button", { name: "submit form" })).toHaveTextContent(
     "Log in"
@@ -10,4 +11,10 @@ test("login", () => {
   expect(
     screen.getByRole("button", { name: "toggle register or log in" })
   ).toHaveTextContent("New User?");
+  fireEvent.click(
+    screen.getByRole("button", { name: "toggle register or log in" })
+  );
+  expect(
+    screen.getByRole("button", { name: "toggle register or log in" })
+  ).toHaveTextContent("Returning user?");
 });

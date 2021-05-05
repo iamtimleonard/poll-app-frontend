@@ -17,7 +17,6 @@ export const UserContextProvider = ({ children }) => {
   };
 
   const checkLoggedIn = async () => {
-    console.dir(localStorage["pollSession"]);
     const response = await fetch(`${API_URL}/users`, {
       method: "POST",
       body: {

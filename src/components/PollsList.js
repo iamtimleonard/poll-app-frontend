@@ -1,15 +1,16 @@
 import { usePollsContext } from "../context/polls";
+import styles from "./PollsList.module.css";
 import PollCard from "./PollCard";
 
 const PollsList = () => {
   const { polls } = usePollsContext();
   return (
     <>
-      <h2 className="heading">Choose a poll below:</h2>
+      <h2 className={styles.heading}>Choose a poll below:</h2>
       <section
         role="contentinfo"
         aria-label="List of poll questions"
-        className="poll-list"
+        className={styles.list}
         aria-live="polite"
       >
         {polls.map((poll) => (

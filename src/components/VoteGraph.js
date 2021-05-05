@@ -1,4 +1,5 @@
 import { BsFillSquareFill } from "react-icons/bs";
+import styles from "./VoteGraph.module.css";
 
 const VoteGraph = ({ num, color }) => {
   const icons = [];
@@ -10,7 +11,7 @@ const VoteGraph = ({ num, color }) => {
       />
     );
   }
-  return <span className="vote-graph">{icons}</span>;
+  return <span className={styles.graph}>{icons}</span>;
 };
 
 export default VoteGraph;

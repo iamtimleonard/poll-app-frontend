@@ -1,4 +1,5 @@
 import { useUserContext } from "../../context/user";
+import styles from "./User.module.css";
 import Logout from "../auth/Logout";
 
 const User = () => {
@@ -9,7 +10,11 @@ const User = () => {
       <header className="profile__header">
         <h1>{`${user.name}'s`} Profile</h1>
         <p>Member Since: {joinDate}</p>
-        <button className="login__btn" onClick={deleteUser}>
+        <button
+          className={styles.btn}
+          aria-label="delete account"
+          onClick={deleteUser}
+        >
           Delete Account
         </button>
         <Logout></Logout>

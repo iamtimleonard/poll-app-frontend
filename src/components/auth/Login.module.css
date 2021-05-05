@@ -1,0 +1,23 @@
+.btn {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #dedede;
+}
+
+.submit {
+  border: 1px solid black;
+}
+
+.formControl input {
+  width: 100%;
+  font-size: 1.8rem;
+  padding: 1rem;
+}

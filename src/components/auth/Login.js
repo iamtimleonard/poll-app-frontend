@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUserContext } from "../../context/user";
+import styles from "./Login.module.css";
 
 const Login = () => {
   const { createUser, findUser } = useUserContext();
@@ -34,7 +35,7 @@ const Login = () => {
   return (
     <>
       <form>
-        <div className="form-control">
+        <div className={styles.formControl}>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -44,7 +45,7 @@ const Login = () => {
           />
         </div>
         {isNewUser && (
-          <div className="form-control">
+          <div className={styles.formControl}>
             <input
               value={nameConfirm}
               onChange={(e) => setNameConfirm(e.target.value)}
@@ -54,7 +55,7 @@ const Login = () => {
             />
           </div>
         )}
-        <div className="form-control">
+        <div className={styles.formControl}>
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -64,22 +65,26 @@ const Login = () => {
           />
         </div>
         {isNewUser && (
-          <div className="form-control">
+          <div className={styles.formControl}>
             <input
               value={passwordConfirm}
               onChange={(e) => setPasswordConfirm(e.target.value)}
               type="password"
-              name="passwordConfirm"
               placeholder="Confirm Password"
             />
           </div>
         )}
-        <div className="form-control">
-          <button className="login__btn login--submit" onClick={handleSubmit}>
+        <div className={styles.formControl}>
+          <button
+            className={styles.btn}
+            aria-label="submit form"
+            onClick={handleSubmit}
+          >
             {isNewUser ? "Create Account" : "Log in"}
           </button>
           <button
-            className="login__btn login--new-user"
+            className={styles.btn}
+            aria-label="toggle register or log in"
             onClick={handleNewUser}
           >
             {isNewUser ? "Returning user?" : "New User?"}

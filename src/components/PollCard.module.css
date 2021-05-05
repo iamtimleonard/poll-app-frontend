@@ -1,0 +1,57 @@
+.question {
+  margin: 1rem 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.question:hover {
+  color: rgb(255, 129, 71);
+}
+
+.active {
+  color: tomato;
+}
+
+.voteGraph {
+  margin-right: 1rem;
+}
+
+.btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+  outline: none;
+}
+
+.voteBtn {
+  width: 8rem;
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 1.5rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.option {
+  font-size: 1.8rem;
+}
+
+.vote {
+  font-weight: bold;
+}
+
+.active {
+  color: tomato;
+}
+
+@media (min-width: 700px) {
+  .pollHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}

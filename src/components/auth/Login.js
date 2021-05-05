@@ -76,14 +76,14 @@ const Login = () => {
         )}
         <div className={styles.formControl}>
           <button
-            className={styles.loginBtn}
+            className={styles.btn}
             aria-label="submit form"
             onClick={handleSubmit}
           >
             {isNewUser ? "Create Account" : "Log in"}
           </button>
           <button
-            className={styles.loginBtn}
+            className={styles.btn}
             aria-label="toggle register or log in"
             onClick={handleNewUser}
           >

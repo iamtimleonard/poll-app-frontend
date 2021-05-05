@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import styles from "./NewPoll.module.css";
 import { useUserContext } from "../context/user";
 import { usePollsContext } from "../context/polls";
 
@@ -41,9 +42,9 @@ const NewPoll = () => {
   };
   return (
     <section className="new-poll">
-      <h2 className="heading">Create a New Poll</h2>
+      <h2 className={styles.heading}>Create a New Poll</h2>
       <form>
-        <div className="form-control">
+        <div className={styles.formControl}>
           <input
             onChange={(e) => setQuestion(e.target.value)}
             value={question}
@@ -56,9 +57,9 @@ const NewPoll = () => {
           />
         </div>
         {options.map((option, index) => (
-          <p className="option-input" key={option.id}>
+          <p className={styles.optionInput} key={option.id}>
             {option.text}
-            <span className="icon pointer" aria-label="delete response option">
+            <span className={styles.icon} aria-label="delete response option">
               <FaTrashAlt
                 size={16}
                 color="red"
@@ -67,7 +68,7 @@ const NewPoll = () => {
             </span>
           </p>
         ))}
-        <div className="form-control">
+        <div className={styles.formControl}>
           <input
             value={newOption}
             onChange={(e) => setNewOption(e.target.value)}
@@ -76,7 +77,7 @@ const NewPoll = () => {
             aria-label="type new response option"
           />
         </div>
-        <div className="buttons">
+        <div className={styles.buttons}>
           <button disabled={!newOption.length} onClick={handleAddOption}>
             Add option
           </button>

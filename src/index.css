@@ -179,7 +179,7 @@ nav a:hover {
 
 /* login */
 
-.login__btn {
+/* .login__btn {
   background: none;
   border: none;
   font-size: 1.6rem;
@@ -195,7 +195,7 @@ nav a:hover {
 
 .login--submit {
   border: 1px solid black;
-}
+} */
 
 @media (min-width: 700px) {
   .poll-header {

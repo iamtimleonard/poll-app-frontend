@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { usePollsContext } from "../context/polls";
 import { useUserContext } from "../context/user";
+import styles from "./PollCard.module.css";
 import Options from "./Options";
 
 const PollCard = ({ question, options, id, createdBy }) => {
@@ -10,10 +11,10 @@ const PollCard = ({ question, options, id, createdBy }) => {
   const { getAllByUser, deletePoll } = usePollsContext();
 
   return (
-    <article aria-live="polite" aria-atomic="true" className="poll-card">
-      <header className="poll-header">
+    <article aria-live="polite" aria-atomic="true">
+      <header className={styles.pollHeader}>
         <h3
-          className={`${active && "active"} question pointer`}
+          className={`${active && "active"} ${styles.question}`}
           onClick={() => setActive(!active)}
         >
           {question}
@@ -21,7 +22,7 @@ const PollCard = ({ question, options, id, createdBy }) => {
         <p>
           Created by:{" "}
           <button
-            className="poll-user-btn"
+            className={styles.btn}
             onClick={() => getAllByUser(createdBy.id)}
           >
             {createdBy.name}

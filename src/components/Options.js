@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUserContext } from "../context/user";
 import { usePollsContext } from "../context/polls";
+import styles from "./PollCard.module.css";
 import VoteGraph from "./VoteGraph";
 
 const Options = ({ options, id, voted, setVoted }) => {
@@ -44,7 +45,7 @@ const Options = ({ options, id, voted, setVoted }) => {
             {options.map((option, index) => (
               <li
                 className={`vote-result ${
-                  option.votes.includes(user._id) ? "user-vote" : "option"
+                  option.votes.includes(user._id) ? styles.vote : styles.option
                 }`}
                 key={option.id}
               >
@@ -71,12 +72,12 @@ const Options = ({ options, id, voted, setVoted }) => {
                 id={option.id}
                 value={option.id}
               />
-              <label className="option-label pointer" htmlFor={option.id}>
+              <label className={styles.option} htmlFor={option.id}>
                 {option.text}
               </label>
             </div>
           ))}
-          <button disabled={!choice && true} className="vote-button pointer">
+          <button disabled={!choice && true} className={styles.voteBtn}>
             Vote
           </button>
         </form>

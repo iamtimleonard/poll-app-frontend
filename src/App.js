@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { useUserContext } from "./context/user";
 import { usePollsContext } from "./context/polls";
+import styles from "./App.module.css";
 import PollsList from "./components/PollsList";
 import PollsListInactive from "./components/PollsListInactve";
 import NewPoll from "./components/NewPoll";
@@ -39,11 +40,11 @@ const App = () => {
         )}
       </nav>
       <h1>PollBuddy</h1>
-      <p className="welcome">
+      <p className={styles.welcome}>
         {user ? `Welcome, ${user.name}` : "Please log in!"}
       </p>
       <main>
-        <div className="container">
+        <div className={styles.container}>
           <Route path="/" exact>
             {user ? <PollsList /> : <PollsListInactive />}
           </Route>

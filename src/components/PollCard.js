@@ -14,7 +14,7 @@ const PollCard = ({ question, options, id, createdBy }) => {
     <article aria-live="polite" aria-atomic="true">
       <header className={styles.pollHeader}>
         <h3
-          className={`${active && "active"} ${styles.question}`}
+          className={`${active && styles.active} ${styles.question}`}
           onClick={() => setActive(!active)}
         >
           {question}

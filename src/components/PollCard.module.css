@@ -44,6 +44,10 @@
   font-weight: bold;
 }
 
+.active {
+  color: tomato;
+}
+
 @media (min-width: 700px) {
   .pollHeader {
     display: flex;
